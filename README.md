@@ -8,5 +8,4 @@ This repository will contain the official implementation of the paper:
 Shakiba Khourashahi, Ilia Jahanshahi, Bei Wang, Lin Yan  
 IEEE TVCG, 2026
 
-**The code will be available in a few days. 
-Stay tuned!**
+**The code will be available in a few days. Stay tuned!**

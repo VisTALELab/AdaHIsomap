@@ -25,7 +25,7 @@ This repository includes implementations of:
 - Adaptive Mapper parameterization
 - Standard Mapper
 - Landmark Isomap
-- Visualization utilities
+- Visualization 
 
 The framework supports both point cloud datasets and network datasets.
 

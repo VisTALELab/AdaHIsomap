@@ -1,0 +1,22 @@
+# Python generated files
+__pycache__/
+*.py[cod]
+
+# macOS
+.DS_Store
+
+# VS Code local settings
+.vscode/
+
+# Generated results
+results/
+*.png
+
+# Python environments
+.venv/
+venv/
+env/
+
+# Temporary files
+*.tmp
+*.log

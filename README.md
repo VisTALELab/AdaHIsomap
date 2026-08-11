@@ -8,7 +8,7 @@ Code release for the paper:
 
 Shakiba Khourashahi, Ilia Jahanshahi, Bei Wang, Lin Yan
 
-IEEE Transactions on Visualization and Computer Graphics (TVCG), 2026. 2606.04464v1.pdf
+IEEE Transactions on Visualization and Computer Graphics (TVCG), 2026.
 
 ---
 

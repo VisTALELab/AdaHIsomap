@@ -27,8 +27,6 @@ This repository includes implementations of:
 - Landmark Isomap
 - Visualization 
 
-The framework supports both point cloud datasets and network datasets.
-
 ---
 
 ## Features

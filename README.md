@@ -36,9 +36,9 @@ This repository includes implementations of:
 - Interactive persistence threshold selection
 - Homology-preserving landmark selection
 - Stochastic anchor point generation
-- Interactive parameter selection GUI
+- Interactive parameter selection 
 - Multiple filter functions
-- Standard Mapper and AdaMapper modes
+- AdaMapper and Standard Mapper 
 
 ---
 

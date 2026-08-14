@@ -99,6 +99,18 @@ Users who wish to run the framework on their own datasets should follow the corr
 
 Dataset descriptions, sources, and citations are provided in the paper.
 ---
+
+## Installation
+
+AdaHIsomap requires both **Python** and **Julia**. Julia is used for the
+persistent-homology computation and is called from Python through PyJulia.
+
+For complete installation instructions, including Python dependencies,
+Julia packages, PyJulia configuration, and setup verification, see:
+
+[`INSTALLATION.md`](INSTALLATION.md)
+
+---
 ## Running the Code
 
 Before running the software, we strongly recommend reading the paper to become familiar with the AdaMapper and AdaHIsomap framework and the role of the main parameters.

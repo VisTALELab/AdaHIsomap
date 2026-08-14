@@ -1,4 +1,4 @@
-# AdaHIsomap
+# AdaMapper & AdaHIsomap
 
 Code release for the paper:
 

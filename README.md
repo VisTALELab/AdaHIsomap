@@ -97,7 +97,8 @@ The example input datasets are provided in the `data/` directory.
 
 Users who wish to run the framework on their own datasets should follow the corresponding input format. See the files in the `data/` directory for examples.
 
-Dataset descriptions, sources, and citations are provided in the paper.
+### Dataset descriptions, sources, and citations are provided in the paper.
+
 ---
 
 ## Installation

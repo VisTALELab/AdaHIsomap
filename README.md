@@ -25,34 +25,41 @@ The framework combines:
 
 The implementation in this repository follows the methodology described in Sections 4 and 5 of the paper.
 
-This repository includes implementations of:
+## Implemented Components
 
-- Interactive persistence-threshold selection
-- Persistence-diagram-induced segmentation
-- Adaptive Mapper parameterization
-- Stochastic anchor-point selection
-- AdaMapper
-- Landmark Isomap
-- AdaHIsomap
-- Standard Mapper / HIsomap
-- Visualization utilities
-- Support for standard point-cloud and network datasets
+This repository provides implementations of the AdaMapper–AdaHIsomap framework, including:
+
+- Persistence-diagram computation and interactive persistence-threshold selection
+- Persistence-diagram-induced (PD-induced) segmentation
+- Adaptive cover construction and refinement
+- AdaMapper skeleton construction
+- Homology-informed landmark selection
+- Stochastic anchor-point selection for enhanced homology preservation
+- AdaHIsomap dimensionality reduction
+- Standard Mapper for comparison and experimentation
+- HIsomap / Landmark Isomap embedding
+- Multiple filter functions for Mapper construction
+- Processing of point-cloud and network datasets
+- Visualization of Mapper and AdaMapper skeletons and low-dimensional embeddings
 
 ---
 
 ## Features
 
-- Persistence-guided Mapper construction
-- Adaptive cover refinement
-- Interactive persistence-threshold selection
-- Homology-informed landmark selection
-- Stochastic anchor-point generation
-- Interactive parameter-selection windows
-- Multiple filter functions
-- AdaMapper and Standard Mapper modes
-- Support for repeated experiment rounds
-- Automatic saving of embeddings and visualizations
+The software provides an interactive workflow for running and comparing topology-aware dimensionality reduction experiments. Key features include:
 
+- Interactive persistence-threshold selection based on computed H1 features
+- Automatic persistence-guided adaptive refinement of the Mapper cover
+- Support for both AdaMapper and Standard Mapper workflows
+- Homology-informed selection of skeleton landmarks
+- Stochastic anchor-point generation to complement skeleton landmarks
+- Interactive selection and validation of algorithm parameters
+- Support for multiple filter functions and base-point selection methods
+- Support for standard point-cloud and network datasets
+- Dataset-specific visualization of the original data, Mapper skeleton, and low-dimensional projection
+- Optional index-based coloring for reproducing selected paper visualizations
+- Repeated experiment rounds without recomputing the persistence diagram
+- Automatic organization and saving of experiment outputs by dataset and round
 ---
 
 ## Supported Filter Functions
@@ -99,11 +106,25 @@ Example datasets included in this repository include:
 - Mice
 - Coauthor Network
 
+### Dataset Format
+
+The example input datasets are provided in the `data/` directory.
+
+- **Point-cloud and other non-network datasets:** Each dataset is stored as a `.txt` file containing the coordinates or feature values of the data points. Each row represents one data point, and each column represents one dimension or feature.
+
+- **Network datasets:** Network data should be provided as an edge list, where each row specifies a connection between two nodes. The included **Coauthor Network** dataset follows this node-edge representation and serves as an example of the expected network input format.
+
+Users who wish to run the framework on their own datasets should follow the corresponding input format. See the files in the `data/` directory for examples.
+
 Dataset descriptions, sources, and citations are provided in the paper.
-
 ---
-
 ## Running the Code
+
+Before running the software, we strongly recommend reading the paper to become familiar with the AdaMapper and AdaHIsomap framework and the role of the main parameters.
+
+For a first experiment, we recommend using **AdaMapper with the recommended default parameters** provided by the interface. Changing these parameters may require prior knowledge of their roles and their effects on AdaMapper and Mapper construction and the resulting embedding.
+
+### Running the Main Program
 
 Run the main program using:
 
@@ -117,7 +138,7 @@ The main entry point is:
 Run_AdaHIsomap.py
 ```
 
-Datasets can be enabled or disabled in the `DATASET_CONFIGS` dictionary.
+Datasets can be enabled or disabled in the `DATASET_CONFIGS` dictionary in `Run_AdaHIsomap.py`.
 
 For example:
 
@@ -138,22 +159,57 @@ Set:
 "enabled": True
 ```
 
-for every dataset you want to process.
+for every dataset you want to process. Set `"enabled": False` for datasets that should be skipped.
 
-To run all included experiments, enable all desired datasets and run:
+After selecting the desired datasets, run:
 
 ```bash
 python Run_AdaHIsomap.py
 ```
 
-The interactive interface will then guide you through:
+### Selecting AdaMapper or Standard Mapper
 
-1. Persistence-threshold selection.
-2. AdaMapper or Standard Mapper parameter selection.
-3. Execution of the selected method.
-4. Visualization of the resulting skeleton and embedding.
-5. Running another experiment round or continuing to the next enabled dataset.
+The **Persistence-Threshold Selection** window is also used to determine whether the experiment proceeds with **AdaMapper** or **Standard Mapper**.
 
+- To run **AdaMapper**, select a persistence threshold that retains the desired persistent features.
+- To run **Standard Mapper**, move the persistence-threshold slider completely to the end until the interface displays:
+
+```text
+Status: Standard Mapper
+```
+
+The program will then automatically open the appropriate parameter-selection window for the selected method.
+
+### Persistence-Threshold Recommendation
+
+For **AdaMapper**, we recommend starting with a persistence threshold of **30% or higher**.
+
+Lower persistence thresholds retain less-persistent topological features, which may include noise. Retaining a large number of such features can increase the complexity of the resulting AdaMapper construction, increase computation time, and may negatively affect the resulting representation.
+
+The appropriate persistence threshold is nevertheless dataset-dependent. Users with prior knowledge of the topology of their data may choose a different threshold when appropriate.
+
+### Recommended First Run
+
+For your first run, we recommend the following workflow:
+
+1. Select an enabled dataset.
+2. Use **AdaMapper**.
+3. Start with the recommended persistence-threshold range described above.
+4. Use the **recommended default parameters** displayed in the AdaMapper parameter-selection window.
+5. Run the experiment and inspect the generated AdaMapper skeleton and AdaHIsomap projection.
+
+After becoming familiar with the workflow and the role of each parameter, you can modify the parameters and run additional experiment rounds.
+
+### Interactive Workflow
+
+The interactive interface guides the user through:
+
+1. Persistence-threshold selection and selection between AdaMapper and Standard Mapper.
+2. Selection of the parameters associated with the chosen method.
+3. Visualization and automatic saving of the resulting skeleton and embedding.
+4. Running another experiment round or continuing to the next enabled dataset.
+
+When another round is requested for the same dataset, the previously computed persistence information is reused, avoiding unnecessary recomputation.
 ---
 
 ## Persistence Computation Time
@@ -294,27 +350,6 @@ results/
 ```
 
 Round numbers are included in output filenames so that repeated experiments are kept separate.
-
----
-
-## Documentation
-
-Additional documentation is under development and will be added in future updates, including:
-
-- Step-by-step usage instructions
-- Parameter descriptions
-- Input-data format
-- Detailed reproduction instructions
-
----
-
-## Demo
-
-Demonstration materials are currently being prepared and will be added in future updates, including:
-
-- Example workflows
-- Sample results
-- Reproducible examples
 
 ---
 

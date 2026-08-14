@@ -27,14 +27,14 @@ The implementation in this repository follows the methodology described in Secti
 
 This repository includes implementations of:
 
-- AdaMapper
-- AdaHIsomap
 - Interactive persistence-threshold selection
 - Persistence-diagram-induced segmentation
 - Adaptive Mapper parameterization
-- Standard Mapper
-- Landmark Isomap
 - Stochastic anchor-point selection
+- AdaMapper
+- Landmark Isomap
+- AdaHIsomap
+- Standard Mapper / HIsomap
 - Visualization utilities
 - Support for standard point-cloud and network datasets
 

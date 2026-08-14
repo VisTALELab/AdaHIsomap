@@ -21,7 +21,7 @@ AdaHIsomap is a topology-aware dimensionality reduction framework designed to pr
 The framework combines:
 
 - **AdaMapper**, an adaptive persistence-guided Mapper algorithm that refines the cover in regions associated with topological loops.
-- **AdaHIsomap**, a homology-informed extension of Landmark Isomap that uses Mapper-derived landmarks together with stochastic anchor points to improve topology preservation while maintaining geometric structure.
+- **AdaHIsomap**, a homology-informed extension of Landmark Isomap that uses AdaMapper-derived landmarks together with stochastic anchor points to improve topology preservation while maintaining geometric structure.
 
 The implementation in this repository follows the methodology described in Sections 4 and 5 of the paper.
 

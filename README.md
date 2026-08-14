@@ -25,25 +25,6 @@ The framework combines:
 
 The implementation in this repository follows the methodology described in Sections 4 and 5 of the paper.
 
-## Implemented Components
-
-This repository provides implementations of the AdaMapper–AdaHIsomap framework, including:
-
-- Persistence-diagram computation and interactive persistence-threshold selection
-- Persistence-diagram-induced (PD-induced) segmentation
-- Adaptive cover construction and refinement
-- AdaMapper skeleton construction
-- Homology-informed landmark selection
-- Stochastic anchor-point selection for enhanced homology preservation
-- AdaHIsomap dimensionality reduction
-- Standard Mapper for comparison and experimentation
-- HIsomap / Landmark Isomap embedding
-- Multiple filter functions for Mapper construction
-- Processing of point-cloud and network datasets
-- Visualization of Mapper and AdaMapper skeletons and low-dimensional embeddings
-
----
-
 ## Features
 
 The software provides an interactive workflow for running and comparing topology-aware dimensionality reduction experiments. Key features include:
@@ -209,7 +190,7 @@ The interactive interface guides the user through:
 3. Visualization and automatic saving of the resulting skeleton and embedding.
 4. Running another experiment round or continuing to the next enabled dataset.
 
-When another round is requested for the same dataset, the previously computed persistence information is reused, avoiding unnecessary recomputation.
+#### When another round is requested for the same dataset, the previously computed persistence information is reused, avoiding unnecessary recomputation.
 ---
 
 ## Persistence Computation Time

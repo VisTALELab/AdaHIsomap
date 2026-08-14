@@ -255,21 +255,16 @@ plot_projection_by_index(...)
 This option is provided to make it easier to reproduce the corresponding visualizations shown in the paper.
 
 ---
-
 ## Reproducing the Paper Figures
 
 The default AdaHIsomap implementation uses stochastic anchor-point selection. Therefore, the exact landmark set may differ between runs.
 
 To reproduce the exact figures reported in the paper, use the fixed landmark indices provided in the reproduction instructions.
 
-
-```text
 See [`Reproduce_Paper_Figures.pdf`](Reproduce_Paper_Figures.pdf) for the dataset-specific landmark indices used to reproduce the figures reported in the paper.
-```
 
-for the dataset-specific landmark indices used in the paper.
+For exact figure reproduction in AdaMapper mode, the provided indices can be assigned in `AdaHIsomap.py` after the stochastic anchor-point selection step.
 
-For exact figure reproduction in AdaMapper mode, the provided indices can be assigned in `AdaHIsomap.py` after the stochastic-anchor selection step.
 
 The relevant section is:
 

@@ -262,7 +262,6 @@ The default AdaHIsomap implementation uses stochastic anchor-point selection. Th
 
 To reproduce the exact figures reported in the paper, use the fixed landmark indices provided in the reproduction instructions.
 
-See:
 
 ```text
 See [`Reproduce_Paper_Figures.pdf`](Reproduce_Paper_Figures.pdf) for the dataset-specific landmark indices used to reproduce the figures reported in the paper.

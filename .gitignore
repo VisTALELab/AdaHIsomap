@@ -1,21 +1,28 @@
-# Python generated files
+# Python cache
 __pycache__/
 *.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
 
 # macOS
 .DS_Store
 
-# VS Code local settings
+# VS Code
 .vscode/
 
 # Generated results
-results/
-*.png
+AdaMapper_AdaHIsomap/results/
 
-# Python environments
-.venv/
-venv/
-env/
+# Python testing/cache
+.pytest_cache/
+.mypy_cache/
+
+# Jupyter
+.ipynb_checkpoints/
 
 # Temporary files
 *.tmp

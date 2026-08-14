@@ -77,7 +77,7 @@ DATASET_CONFIGS = {
         "filter_function": "base_point_geodesic_distance",
     },
     "Octa": {
-        "enabled": True,
+        "enabled": False,
         "dataset_type": "standard",
         "overlap_perc": 0.2,
         "BP": "EP",
@@ -85,7 +85,7 @@ DATASET_CONFIGS = {
         "filter_function": "base_point_geodesic_distance",
     },
     "Glasses": {
-        "enabled": True,
+        "enabled": False,
         "dataset_type": "standard",
         "overlap_perc": 0.2,
         "BP": "EP",
@@ -125,7 +125,7 @@ DATASET_CONFIGS = {
         "filter_function": "base_point_geodesic_distance",
     },
     "Face3DModel": {
-        "enabled": True,
+        "enabled": False,
         "dataset_type": "standard",
         "overlap_perc": 0.2,
         "BP": "EP",
@@ -133,7 +133,7 @@ DATASET_CONFIGS = {
         "filter_function": "base_point_geodesic_distance",
     },
     "Mice": {
-        "enabled": True,
+        "enabled": False,
         "dataset_type": "standard",
         "overlap_perc": 0.2,
         "BP": "EP",
@@ -142,7 +142,7 @@ DATASET_CONFIGS = {
     },
 
     "Coauthor_network_dataset": {
-        "enabled": True,
+        "enabled": False,
         "dataset_type": "network",
         "overlap_perc": 0.2,
         "BP": "EP",
@@ -152,7 +152,7 @@ DATASET_CONFIGS = {
 }
 
 
-TIME_DATASETS = {
+INDEX_PLOT_DATASETS = {
     "Cartoon",
     "VortexStreet",
     "Face3DModel",
@@ -432,28 +432,32 @@ def run_dataset(data_type: str, config: dict) -> str:
     # Calculate persistence 
     # --------------------------------------------------
 
-    print(
-        "\nCalculating the persistence diagram. "
-        "This may take some time..."
-    )
+    persistence_window = (
+        interactive_visualization
+        .show_persistence_calculation_window(
+            data_type=data_type))
 
-    all_features = compute_H1_features(
-        data_type=data_type,
-        dataset_type=dataset_type,
-        distance_matrix=(
-            X
-            if dataset_type == "network"
-            else None
-        ),
-    )
+    try:
+
+        all_features = compute_H1_features(
+            data_type=data_type,
+            dataset_type=dataset_type,
+            distance_matrix=(
+                X
+                if dataset_type == "network"
+                else None
+            ),
+        )
+
+    finally:
+
+        persistence_window.destroy()
 
 
     print("\nPersistence calculation completed.")
     print(
         "Number of H1 features:",
-        len(all_features),
-    )
-
+        len(all_features))
 
     round_number = 1
 
@@ -674,6 +678,7 @@ def run_dataset(data_type: str, config: dict) -> str:
         skeleton_landmark_indexes = (proj.get_skeleton_landmark_indexes())
         stochastic_anchor_indexes = (proj.get_stochastic_anchor_indexes())
 
+
         Landmark = X[skeleton_landmark_indexes]
         projected_Landmark = Y[skeleton_landmark_indexes]
         projected_stochastic_anchor = Y[stochastic_anchor_indexes]
@@ -683,22 +688,31 @@ def run_dataset(data_type: str, config: dict) -> str:
         dim = X.shape[1]
 
     
+        if algorithm_mode == "adamapper":
+            original_plot_title = "AdaMapper Skeleton"
+            projection_plot_title = "AdaMapper Skeleton + AdaHIsomap Projection"
+
+        else:
+            original_plot_title = "Mapper Skeleton"
+            projection_plot_title = "Mapper Skeleton + HIsomap Projection"
+
+
         if dataset_type == "network":
             node_colors = coauthor_network_data_processing.get_node_colors_by_top4_hubs(graph, X, node_labels)
             plot.plot_projection_graph(Y, node_colors, node_labels, graph, output_prefix, dataset_results_dir, show_skeleton="on")   
 
         else:
-            
+   
             if dim == 2:
-                plot.plot_original_data_in_2d(X, links, Landmark, color, output_prefix, dataset_results_dir, BP, show_skeleton="on")
+                plot.plot_original_data_in_2d(X, links, Landmark, color, output_prefix, dataset_results_dir, BP, plot_title=original_plot_title, show_skeleton="on")
 
             if dim == 3:
-                plot.plot_original_data_in_3d(X, links, Landmark, color, output_prefix, dataset_results_dir, BP, show_skeleton="on")
+                plot.plot_original_data_in_3d(X, links, Landmark, color, output_prefix, dataset_results_dir, BP, plot_title=original_plot_title, show_skeleton="on")
 
-            plot.plot_projection(Y, projected_Landmark, projected_stochastic_anchor, links, color, output_prefix, dataset_results_dir, BP_id, show_skeleton="on")
+            plot.plot_projection(Y, projected_Landmark, projected_stochastic_anchor, links, color, output_prefix, dataset_results_dir, BP_id, plot_title=projection_plot_title, show_skeleton="on")
 
-            if data_type in TIME_DATASETS:
-                plot.plot_projection_by_index(Y, projected_Landmark, projected_stochastic_anchor, links, output_prefix, dataset_results_dir, show_skeleton="on")
+            if data_type in INDEX_PLOT_DATASETS:
+                plot.plot_projection_by_index(Y, projected_Landmark, projected_stochastic_anchor, links, output_prefix, dataset_results_dir, plot_title=projection_plot_title, show_skeleton="on")
 
 
 

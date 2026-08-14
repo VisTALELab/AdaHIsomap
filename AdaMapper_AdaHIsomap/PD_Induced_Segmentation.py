@@ -41,7 +41,7 @@ def derive_ri(X, lens, knn_graph, features, dataset_type="standard", distance_ma
 
         if triangle_shape == "balanced":
 
-            print('\n balanced-case processing \n')
+            print(' balanced-case processing \n')
 
             a_point_index = int(loop_info["a_index"])
             b_point_index = int(loop_info["b_index"])
@@ -68,7 +68,7 @@ def derive_ri(X, lens, knn_graph, features, dataset_type="standard", distance_ma
 
         elif triangle_shape == "unbalanced":
 
-            print('\n Unbalanced-case processing \n')
+            print(' Unbalanced-case processing \n')
 
             t_point_index = int(loop_info["Xt_index"])
             s_point_index = int(loop_info["Xs_index"])

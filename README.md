@@ -103,24 +103,37 @@ Users who wish to run the framework on their own datasets should follow the corr
 
 ## Installation
 
-AdaHIsomap requires both **Python** and **Julia**. Julia is used for the
-persistent-homology computation and is called from Python through PyJulia.
+AdaHIsomap requires both **Python** and **Julia**. Julia is used for the persistent-homology computation and is called from Python through PyJulia.
 
-For complete installation instructions, including Python dependencies,
-Julia packages, PyJulia configuration, and setup verification, see:
+For complete installation instructions, including Python dependencies, Julia packages, PyJulia configuration, and setup verification, see:
 
 [`INSTALLATION.md`](INSTALLATION.md)
 
 ---
+
 ## Running the Code
 
 Before running the software, we strongly recommend reading the paper to become familiar with the AdaMapper and AdaHIsomap framework and the role of the main parameters.
 
-For a first experiment, we recommend using **AdaMapper with the recommended default parameters** provided by the interface. Changing these parameters may require prior knowledge of their roles and their effects on AdaMapper and Mapper construction and the resulting embedding.
+For a first experiment, we recommend using **AdaMapper with the recommended default parameters** provided by the interface. Changing these parameters may require prior knowledge of their roles and their effects on AdaMapper/Mapper construction and the resulting embedding.
 
 ### Running the Main Program
 
-Run the main program using:
+After completing the installation steps, enter the implementation directory:
+
+```bash
+cd AdaMapper_AdaHIsomap
+```
+
+Then run:
+
+### macOS / Linux
+
+```bash
+python3 Run_AdaHIsomap.py
+```
+
+### Windows
 
 ```bash
 python Run_AdaHIsomap.py
@@ -129,10 +142,12 @@ python Run_AdaHIsomap.py
 The main entry point is:
 
 ```text
-Run_AdaHIsomap.py
+AdaMapper_AdaHIsomap/Run_AdaHIsomap.py
 ```
 
-Datasets can be enabled or disabled in the `DATASET_CONFIGS` dictionary in `Run_AdaHIsomap.py`.
+### Selecting Datasets
+
+Datasets can be enabled or disabled by modifying the `DATASET_CONFIGS` dictionary in `Run_AdaHIsomap.py`.
 
 For example:
 
@@ -153,17 +168,21 @@ Set:
 "enabled": True
 ```
 
-for every dataset you want to process. Set `"enabled": False` for datasets that should be skipped.
+for every dataset you want to process.
 
-After selecting the desired datasets, run:
+Set:
 
-```bash
-python Run_AdaHIsomap.py
+```python
+"enabled": False
 ```
+
+for datasets that should be skipped.
+
+After selecting the desired datasets, run `Run_AdaHIsomap.py` using the command above.
 
 ### Selecting AdaMapper or Standard Mapper
 
-The **Persistence-Threshold Selection** window is also used to determine whether the experiment proceeds with **AdaMapper** or **Standard Mapper**.
+The **Persistence-Threshold Selection** window determines whether the experiment proceeds with **AdaMapper** or **Standard Mapper**.
 
 - To run **AdaMapper**, select a persistence threshold that retains the desired persistent features.
 - To run **Standard Mapper**, move the persistence-threshold slider completely to the end until the interface displays:
@@ -172,7 +191,7 @@ The **Persistence-Threshold Selection** window is also used to determine whether
 Status: Standard Mapper
 ```
 
-The program will then automatically open the appropriate parameter-selection window for the selected method.
+The program will then automatically open the parameter-selection window corresponding to the selected method.
 
 ### Persistence-Threshold Recommendation
 

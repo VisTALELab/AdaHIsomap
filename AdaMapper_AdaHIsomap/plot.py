@@ -5,10 +5,18 @@ import networkx as nx
 import os
 
     
-def plot_original_data_in_2d(X, links, Landmark, color, title, output_dir, base_point = None, show_skeleton="off"):
+def plot_original_data_in_2d(X, links, Landmark, color, title, output_dir, base_point = None, plot_title=None, show_skeleton="off"):
 
-    fig = plt.figure()
+    fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
+
+    if plot_title is not None:
+        ax.set_title(
+            plot_title,
+            fontsize=16,
+            fontweight="bold",
+            pad=20)
+
     ax.scatter(X[:, 0], X[:, 1],s=20, c=color,
                cmap=plt.get_cmap('coolwarm'))
     
@@ -25,17 +33,28 @@ def plot_original_data_in_2d(X, links, Landmark, color, title, output_dir, base_
                                                                        Landmark[links[i][1]][1]], color='black')
 
     plt.axis('equal')    
-    plt.axis("off")
+    ax.grid(False)
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+    ax.set_xticks([])
+    ax.set_yticks([])
     filename = os.path.join(output_dir, f"{title}_plot_original_data.png")
     plt.savefig(filename, dpi=300, bbox_inches="tight", pad_inches=0.5)
     plt.show()
 
 
 
-def plot_original_data_in_3d(X, links, Landmark, color, title, output_dir, base_point= None, show_skeleton="off"):
+def plot_original_data_in_3d(X, links, Landmark, color, title, output_dir, base_point= None, plot_title=None, show_skeleton="off"):
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111, projection='3d')
+
+    if plot_title is not None:
+        ax.set_title(
+        plot_title,
+        fontsize=16,
+        fontweight="bold",
+        pad=20)
 
     ax.scatter(X[:, 0], X[:, 1], X[:, 2], s=70, c=color, cmap=plt.get_cmap('coolwarm'), alpha=0.08, zorder=3)
         
@@ -51,34 +70,35 @@ def plot_original_data_in_3d(X, links, Landmark, color, title, output_dir, base_
         for i in range(0, len(links)):
             ax.plot([Landmark[links[i][0]][0], Landmark[links[i][1]][0]], [Landmark[links[i][0]][1],
                                                                        Landmark[links[i][1]][1]], [Landmark[links[i][0]][2], Landmark[links[i][1]][2]], color='black',zorder=1,linewidth=2)
-    xticks = ax.get_xticks()
-    yticks = ax.get_yticks()
-    zticks = ax.get_zticks()
 
-    ax.set_xticklabels([''] * len(xticks))
-    ax.set_yticklabels([''] * len(yticks))
-    ax.set_zticklabels([''] * len(zticks))
-
-    ax.set_xlabel('')
-    ax.set_ylabel('')
-    ax.set_zlabel('')
-
-    ax.view_init(elev=-159, azim=153)
     plt.axis('equal')    
     set_axes_equal(ax)
-    plt.axis("off")
+    ax.grid(False)
+    ax.set_xticklabels([])
+    ax.set_yticklabels([])
+    ax.set_zticklabels([])
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_zticks([])
     filename = os.path.join(output_dir, f"{title}_plot_original_data.png")
     plt.savefig(filename, dpi=300, bbox_inches="tight", pad_inches=0.5)
     plt.show()
 
 
 
-def plot_projection(Y, proj_landmark, projected_stochastic_anchor, links, color, title, output_dir, BP_id, show_skeleton="off"):
+def plot_projection(Y, proj_landmark, projected_stochastic_anchor, links, color, title, output_dir, BP_id, plot_title=None, show_skeleton="off"):
     
     base_point = None
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
+
+    if plot_title is not None:
+        ax.set_title(
+        plot_title,
+        fontsize=16,
+        fontweight="bold",
+        pad=20)
 
     ax.scatter(Y[:, 0].real, Y[:, 1].real, s=60, c=color,
                cmap=plt.get_cmap('coolwarm'))
@@ -100,7 +120,7 @@ def plot_projection(Y, proj_landmark, projected_stochastic_anchor, links, color,
             ax.plot([proj_landmark[links[i][0]][0], proj_landmark[links[i][1]][0]], [
                 proj_landmark[links[i][0]][1], proj_landmark[links[i][1]][1]], color='black',linewidth=2.5)
 
-    ax.legend(loc='best', fontsize=12, frameon=True, facecolor='white', edgecolor='black')
+    ax.legend(loc='best', fontsize=9, frameon=True, facecolor='white', edgecolor='black')
     plt.axis("off")  
     filename = os.path.join(output_dir, f"{title}_projection.png")
     plt.savefig(filename, dpi=300, bbox_inches="tight", pad_inches=0.5)
@@ -108,11 +128,18 @@ def plot_projection(Y, proj_landmark, projected_stochastic_anchor, links, color,
 
 
 
-def plot_projection_by_index(Y, proj_landmark, projected_stochastic_anchor, links, title, output_dir, show_skeleton="off"):
+def plot_projection_by_index(Y, proj_landmark, projected_stochastic_anchor, links, title, output_dir, plot_title=None, show_skeleton="off"):
     
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
+
+    if plot_title is not None:
+        ax.set_title(
+        plot_title,
+        fontsize=16,
+        fontweight="bold",
+        pad=20)
 
     time_values = np.arange(len(Y))
 
@@ -134,7 +161,7 @@ def plot_projection_by_index(Y, proj_landmark, projected_stochastic_anchor, link
                 proj_landmark[links[i][0]][1], proj_landmark[links[i][1]][1]], color='black')
 
 
-    ax.legend(loc='best', fontsize=12, frameon=True, facecolor='white', edgecolor='black')
+    ax.legend(loc='best', fontsize=9, frameon=True, facecolor='white', edgecolor='black')
     plt.axis("off")  
     filename = os.path.join(output_dir, f"{title}_projection_by_index.png")
     plt.savefig(filename, dpi=300, bbox_inches="tight", pad_inches=0.5)
@@ -146,6 +173,12 @@ def plot_projection_graph(Y, color, node_labels, graph, title, output_dir, show_
 
     fig = plt.figure(figsize=(10, 10))
     ax = fig.add_subplot(111)
+
+    ax.set_title(
+    "AdaMapper Skeleton + AdaHIsomap Projection",
+    fontsize=16,
+    fontweight="bold",
+    pad=20)
 
     ax.scatter(Y[:, 0].real, Y[:, 1].real, s=520, c=color, edgecolors="black", linewidths=0.6, zorder=3)
 

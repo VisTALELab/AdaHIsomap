@@ -473,7 +473,7 @@ def Base_Point_Geodesic_Distance(X, n_neighbor, BP):
         farthest_point_index = int(np.argmax(Geo_dist_from_start))
         base_point_index = farthest_point_index
 
-        print(f'\n BP == {BP}: \n base_point_index_:', base_point_index)
+        print(f'\n BP == {BP}: \n base_point_index_:', base_point_index,'\n\n')
 
 
     else:

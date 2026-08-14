@@ -7,8 +7,7 @@ using JSON
 
 function get_loop_info(data_type::String)::String
 
-    println("-----------------START----------------------")
-    println("----------------Get H1 Loop Death Simplices----------------")
+    println("----------------Get H1 Loop----------------")
 
     folder_path = joinpath(@__DIR__, "data")
     file_name = data_type * ".txt"
@@ -54,8 +53,7 @@ end
 
 function get_loop_info_from_distance_matrix(dist_matrix)::String
 
-    println("-----------------START----------------------")
-    println("Computing H1 features from distance matrix")
+    println("----------------Computing H1 features from distance matrix----------------")
 
     println(
         "Distance matrix size: ",

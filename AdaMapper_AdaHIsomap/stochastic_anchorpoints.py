@@ -37,7 +37,7 @@ def stochastic_anchorpoints_enhancing_0D_preservation(
 
     print(
         "\nRegular cubes used for stochastic anchors:",
-        regular_cubes_list,
+        regular_cubes_list,'\n\n'
     )
 
     for cube_name in regular_cubes_list:

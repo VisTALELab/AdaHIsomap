@@ -1,6 +1,6 @@
 import json
 from julia.api import Julia
-jl = Julia(runtime="/Applications/Julia-1.11.app/Contents/Resources/julia/bin/julia")
+jl = Julia(compiled_modules=False)
 from julia import Main
 
 

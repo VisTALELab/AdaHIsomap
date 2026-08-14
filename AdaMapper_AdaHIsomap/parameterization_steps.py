@@ -39,16 +39,14 @@ def determine_cube_size(loop_bounds):
         Regular_cube_size = min(loop_ranges)
 
         print(
-                "\nMultiple loops detected."
-                f"\nSmallest loop range: {Regular_cube_size}."
-                f"\nRegular cube size set to {Regular_cube_size}."
+                f"\nSmallest loop range: {Regular_cube_size}. \n\nThen:"
             )
 
 
     critical_cube_size = Regular_cube_size / 3
 
-    print(f'\n Cube size for Regular Range: {Regular_cube_size}')
-    print(f'\n Cube size for critical Range: {critical_cube_size}')
+    print(f'\nRegular cube size set to: {Regular_cube_size}')
+    print(f'Critical cube size set to: {critical_cube_size}\n\n')
 
     return Regular_cube_size, critical_cube_size
 
